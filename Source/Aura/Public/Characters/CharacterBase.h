@@ -17,6 +17,11 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
+	UFUNCTION(BlueprintCallable, Category = "Debug")
+	void DebugCollisionSphere(float frames);
+	UFUNCTION(BlueprintCallable, Category = "Debug")
+	void DebugAISphere(FVector TargetLocation);
+
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	TObjectPtr<USkeletalMeshComponent> Weapon;
 
