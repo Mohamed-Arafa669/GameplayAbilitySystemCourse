@@ -2,6 +2,9 @@
 
 
 #include "Characters/EnemyCharacter.h"
+
+#include "AbilitySystem/AbilitySystemComponentBase.h"
+#include "AbilitySystem/AttributeSetBase.h"
 #include "Aura/Aura.h"
 
 
@@ -10,6 +13,23 @@ AEnemyCharacter::AEnemyCharacter()
 	GetMesh()->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
 	Weapon->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
 
+	AbilitySystemComponent = CreateDefaultSubobject<UAbilitySystemComponentBase>("AbilitySystemComponent");
+	AbilitySystemComponent->SetIsReplicated(true);
+	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Minimal);
+
+
+	AttributeSet = CreateDefaultSubobject<UAttributeSetBase>("AttributeSet");
+
+}
+
+void AEnemyCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+
+	if (AbilitySystemComponent)
+	{
+		AbilitySystemComponent->InitAbilityActorInfo(this, this);
+	}
 }
 
 void AEnemyCharacter::HighlightActor()

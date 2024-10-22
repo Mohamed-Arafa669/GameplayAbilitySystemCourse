@@ -14,6 +14,9 @@ UCLASS()
 class AURA_API AEnemyCharacter : public ACharacterBase,public IInteractInterface
 {
 	GENERATED_BODY()
+protected:
+	virtual void BeginPlay() override;
+
 public:
 	AEnemyCharacter();
 	virtual void HighlightActor() override;

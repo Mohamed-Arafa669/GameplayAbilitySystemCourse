@@ -15,10 +15,17 @@ UCLASS()
 class AURA_API APlayerCharacter : public ACharacterBase
 {
 	GENERATED_BODY()
+
 public:
 	APlayerCharacter();
 
 protected:
+
+	virtual void PossessedBy(AController* NewController) override;
+	virtual void OnRep_PlayerState() override;
+
+	void InitAbilityActorInfo();
+
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	USpringArmComponent* SpringArm;
 
