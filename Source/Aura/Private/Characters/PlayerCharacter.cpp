@@ -60,16 +60,16 @@ void APlayerCharacter::OnRep_PlayerState()
 
 void APlayerCharacter::InitAbilityActorInfo()
 {
-	if (APlayerStateBase* PlayerState = GetPlayerState<APlayerStateBase>())
+	if (APlayerStateBase* m_PlayerState = GetPlayerState<APlayerStateBase>())
 	{
-		if (PlayerState->GetAbilitySystemComponent())
+		if (m_PlayerState->GetAbilitySystemComponent())
 		{
-			AbilitySystemComponent = PlayerState->GetAbilitySystemComponent();
-			AttributeSet = PlayerState->GetAttributeSet();
+			AbilitySystemComponent = m_PlayerState->GetAbilitySystemComponent();
+			AttributeSet = m_PlayerState->GetAttributeSet();
 
 			if (AbilitySystemComponent)
 			{
-				AbilitySystemComponent->InitAbilityActorInfo(PlayerState, this);
+				AbilitySystemComponent->InitAbilityActorInfo(m_PlayerState, this);
 			}
 		}
 	}
